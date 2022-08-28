@@ -1,11 +1,12 @@
-export const ContactList = ({ contacts }) => {
+export const ContactList = ({ contacts, handleDeleteContact }) => {
   return (
     <ul>
-      {contacts.map(contact => {
+      {contacts.map(({ id, name, number }) => {
         return (
-          <li key={contact.id}>
-            <p>name:{contact.name} </p>
-            <p>number:{contact.number} </p>
+          <li key={id}>
+            <p>name:{name} </p>
+            <p>number:{number} </p>
+            <button onClick={() => handleDeleteContact(id)}>delete</button>
           </li>
         );
       })}

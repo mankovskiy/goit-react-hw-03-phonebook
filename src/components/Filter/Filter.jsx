@@ -1,3 +1,3 @@
 export const Filter = ({ handleSetFilterValue }) => {
-  return <input type="text" onInput={handleSetFilterValue}></input>;
+  return <input type="text" onChange={handleSetFilterValue}></input>;
 };
