@@ -15,7 +15,7 @@ const initialContacts = [
 export class App extends Component {
   state = {
     contacts: initialContacts,
-    filter: '',
+    name: '',
   };
 
   handleAddContact = contact => {
@@ -23,7 +23,7 @@ export class App extends Component {
   };
 
   setFilterValue = ({ target: { value } }) => {
-    this.setState({ filter: value });
+    this.setState({ name: value });
   };
 
   handleDeleteContact = id => {
@@ -35,7 +35,7 @@ export class App extends Component {
   render() {
     const filteredContacts = filterContacts(
       this.state.contacts,
-      this.state.filter
+      this.state.name
     );
     return (
       <div>
