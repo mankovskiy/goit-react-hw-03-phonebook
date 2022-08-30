@@ -4,6 +4,7 @@ import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
 import { filterContacts } from 'helpers/filterContacts';
+import { Box } from './Box/Box';
 
 const initialContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -15,15 +16,19 @@ const initialContacts = [
 export class App extends Component {
   state = {
     contacts: initialContacts,
-    name: '',
+    filter: '',
   };
 
   handleAddContact = contact => {
+    if (this.state.contacts.some(cont => cont.name === contact.name)) {
+      alert('Contact alredy exist');
+      return;
+    }
     this.setState(prev => ({ contacts: [...prev.contacts, contact] }));
   };
 
   setFilterValue = ({ target: { value } }) => {
-    this.setState({ name: value });
+    this.setState({ filter: value });
   };
 
   handleDeleteContact = id => {
@@ -35,17 +40,23 @@ export class App extends Component {
   render() {
     const filteredContacts = filterContacts(
       this.state.contacts,
-      this.state.name
+      this.state.filter
     );
     return (
-      <div>
-        <ContactForm onAddContact={this.handleAddContact} />
-        <Filter handleSetFilterValue={this.setFilterValue} />
-        <ContactList
-          contacts={filteredContacts}
-          handleDeleteContact={this.handleDeleteContact}
-        />
-      </div>
+      <>
+        <Box p={20}>
+          <Box as="h2">Phonebook</Box>
+          <ContactForm onAddContact={this.handleAddContact} />
+        </Box>
+        <Box p={20}>
+          <h2>Contacts</h2>
+          <Filter handleSetFilterValue={this.setFilterValue} />
+          <ContactList
+            contacts={filteredContacts}
+            handleDeleteContact={this.handleDeleteContact}
+          />
+        </Box>
+      </>
     );
   }
 }
