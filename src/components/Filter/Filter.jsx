@@ -1,3 +1,8 @@
 export const Filter = ({ handleSetFilterValue }) => {
-  return <input type="text" onChange={handleSetFilterValue}></input>;
+  return (
+    <>
+      <p>Find contacts by name</p>
+      <input type="text" onChange={handleSetFilterValue}></input>
+    </>
+  );
 };

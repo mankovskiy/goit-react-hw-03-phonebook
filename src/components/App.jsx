@@ -46,6 +46,7 @@ export class App extends Component {
       <>
         <Box p={20}>
           <Box as="h2">Phonebook</Box>
+
           <ContactForm onAddContact={this.handleAddContact} />
         </Box>
         <Box p={20}>
