@@ -1,5 +1,5 @@
 import { DeleteBtn } from './ContactListItem.styled';
-
+import PropTypes from 'prop-types';
 export function ContactListItem({ id, name, number, handleDeleteContact }) {
   return (
     <li>
@@ -9,3 +9,10 @@ export function ContactListItem({ id, name, number, handleDeleteContact }) {
     </li>
   );
 }
+
+ContactListItem.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
+  id: PropTypes.string,
+  handleDeleteContact: PropTypes.func,
+};
