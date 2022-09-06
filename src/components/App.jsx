@@ -6,6 +6,8 @@ import { Filter } from './Filter/Filter';
 import { filterContacts } from 'helpers/filterContacts';
 import { Box } from './Box/Box';
 
+const LS_KEY = 'saved_contact';
+
 const initialContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -36,6 +38,21 @@ export class App extends Component {
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem(LS_KEY);
+    const contactParse = JSON.parse(savedContacts);
+    if (contactParse) {
+      this.setState({ contacts: contactParse });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts.length !== this.state.contacts.length) {
+      const contStringify = JSON.stringify(this.state.contacts);
+      localStorage.setItem(LS_KEY, contStringify);
+    }
+  }
 
   render() {
     const filteredContacts = filterContacts(
