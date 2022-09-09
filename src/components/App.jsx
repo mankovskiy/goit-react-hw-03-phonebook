@@ -69,6 +69,7 @@ export class App extends Component {
         <Box p={20}>
           <h2>Contacts</h2>
           <Filter handleSetFilterValue={this.setFilterValue} />
+          {/* <p>Список контактов пуст</p> */}
           <ContactList
             contacts={filteredContacts}
             handleDeleteContact={this.handleDeleteContact}
